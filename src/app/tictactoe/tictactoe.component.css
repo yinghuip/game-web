@@ -1,0 +1,53 @@
+:root {
+    --board-size:
+        --cell-size:
+}
+
+
+.game_screen {
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+    margin: 0;
+    flex-direction: column;
+}
+
+.board {
+    background-color: #ccc;
+    display: grid;
+    grid-template-columns: repeat(var(--board-size), var(--cell-size));
+    grid-template-rows: repeat(var(--board-size), var(--cell-size));
+    gap: 2vmin;
+    border: 1vmin;
+    padding: 2vmin;
+}
+
+.cell {
+    background-color: #aaa;
+    border-radius: 1vmin;
+    font-size: 10vmin;
+    height: var(--cell-size);
+    width: var(--cell-size);
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+}
+
+.header {
+    font-weight: 500;
+}
+
+.cross {
+    color: red
+}
+
+.circle {
+    color: green
+}

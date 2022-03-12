@@ -1,0 +1,65 @@
+<div class="game_screen">
+    <ng-container *ngIf="startGame then gameScreen else  startScreen"></ng-container>
+</div>
+
+<ng-template #startScreen>
+    <form class="container" #mainForm="ngForm">
+        <div class="row">
+            <mat-form-field appearance="fill">
+                <mat-label>Board Size</mat-label>
+                <input matInput placeholder="Board Size" [(ngModel)]="GRID_SIZE" min="3" max="9" type="number"
+                    GRID_SIZE_Input="ngModel" name="GRID_SIZE">
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field appearance="fill">
+                <mat-label>Win Condition</mat-label>
+                <input matInput placeholder="Win Condition" [(ngModel)]="winCondition" WinCondition min="3" max="9"
+                    [boardSize]="GRID_SIZE" type="number" #WIN_CONDITION_Input="ngModel" name="WIN_CONDITION">
+                <mat-error *ngIf="WIN_CONDITION_Input.hasError('WinCondition')">Win Condition cannot be greater than
+                    board size</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="flex-col">
+            <label id="number_of_players_label">Number of players</label>
+            <mat-radio-group aria-labelledby="number of players" id="playerCount_RadioButton"
+                #playerCount_RadioButton="ngModel" name="playerCount" [(ngModel)]="playerCount" class="flex-col">
+                <mat-radio-button [value]="2" [checked]="playerCount == 2">
+                    Two player
+                </mat-radio-button>
+                <mat-radio-button [value]="1" [checked]="playerCount == 1">
+                    Play With AI
+                </mat-radio-button>
+            </mat-radio-group>
+        </div>
+        <div class="row">
+            <button mat-raised-button (click)="startNewGame()" [disabled]="mainForm.invalid">Start Game</button>
+        </div>
+    </form>
+</ng-template>
+
+<ng-template #gameScreen>
+    <ng-container>
+        <div class="row mat-h1">
+            <div>
+                {{Player[currentPlayer]}}
+            </div>
+            <div>
+                {{Result[finalResult]}}
+            </div>
+        </div>
+        <div class="game_screen">
+            <div class="board">
+                <div class="cell" *ngFor="let cell of cells" (click)="pick(cell)">
+                    <span [ngSwitch]="cell.Player">
+                        <span *ngSwitchCase="1" class="cross"> X</span>
+                        <span *ngSwitchCase="2" class="circle"> O</span>
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <button mat-raised-button (click)="endCurrentGame()">End Game</button>
+            </div>
+        </div>
+    </ng-container>
+</ng-template>

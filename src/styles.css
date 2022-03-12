@@ -1,0 +1,39 @@
+/* You can add global styles to this file, and also import other style files */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    gap: 2vmin;
+    padding-bottom: 2vmin;
+    padding-top: 2vmin;
+}
+
+.col {
+    flex: 1;
+}
+
+.container {
+    padding: 20px;
+}
+
+.flex-col{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    row-gap: 2vmin;
+}
